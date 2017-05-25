@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-center">Check all your polls</h2>
+      <div class="list-group polls-container">
+        <a class="clearfix list-group-item" *ngFor="let poll of allPolls">{{ poll.title }} 
+          <button (click)="deletePoll(poll._id)" class="btn btn-danger pull-right">Delete</button>
+          <button (click)="editPoll(poll)" class="btn btn-info pull-right">Edit</button>
+        </a>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <p *ngIf="editPollSuccess == 'pending'" class="text-center alert alert-warning">{{ editPollMessage }}</p>
+  <p *ngIf="editPollSuccess == 'false'" class="text-center alert alert-danger">{{ editPollMessage }}</p>
+  <p *ngIf="editPollSuccess == 'true'" class="text-center alert alert-success">{{ editPollMessage }}</p>
+  <app-edit-poll (onEditClick)="pollEditing($event)" *ngIf="selectedForEditPoll" [poll]="selectedForEditPoll"></app-edit-poll>
+</div>

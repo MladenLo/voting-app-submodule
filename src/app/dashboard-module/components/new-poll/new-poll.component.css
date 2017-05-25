@@ -1,0 +1,13 @@
+#addPollForm {
+    margin:40px 0px;
+}
+input.ng-invalid {
+    border-left: 5px solid red;
+}
+input.ng-valid {
+    border-left: 5px solid green;
+}
+.signup-message {
+    margin: 50px 0px;
+    color: #FF9933;
+}

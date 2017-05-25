@@ -1,0 +1,4 @@
+<h2>All polls</h2>
+<div *ngIf="allPolls" id="pollsContainer" class="list-group">
+  <a (click)="showPoll(poll.poll._id, poll.userId)" *ngFor="let poll of allPolls" class="list-group-item">{{ poll.poll.title }}</a>
+</div>

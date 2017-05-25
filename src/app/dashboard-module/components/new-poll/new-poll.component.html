@@ -1,0 +1,32 @@
+<form *ngIf="!message" [formGroup]="addPollForm" novalidate (ngSubmit)="addNewPoll()" id="addPollForm">
+    
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="title" formControlName="title">
+        <div *ngIf="addPollForm.controls['title'].hasError('required') && !addPollForm.controls['title'].pristine" class="alert alert-danger">
+            This field is required.
+        </div>
+        <div *ngIf="addPollForm.controls['title'].hasError('minlength') && !addPollForm.controls['title'].pristine" class="alert alert-danger">
+            Username must have minimum 2 characters.
+        </div>
+        <div *ngIf="addPollForm.controls['title'].hasError('maxlength') && !addPollForm.controls['title'].pristine" class="alert alert-danger">
+            Username must have maximum 255 characters.
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="options">Options</label>
+        <input type="text" class="form-control" id="options" name="options" placeholder="Example: Option1|Option2" formControlName="options">
+        <div *ngIf="addPollForm.controls['options'].hasError('required') && !addPollForm.controls['options'].pristine" class="alert alert-danger">
+            This field is required.
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="!addPollForm.valid" class="btn btn-primary">Add Poll</button>
+    <p *ngIf="statusMessage && statusMessage.successfulRequest" class="text-center alert alert-success">{{ statusMessage.message }}</p>
+    <p *ngIf="statusMessage && !statusMessage.successfulRequest" class="text-center alert alert-danger">{{ statusMessage.message }}</p>
+</form>
+<p class="text-center signup-message" *ngIf="message">
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+</p>

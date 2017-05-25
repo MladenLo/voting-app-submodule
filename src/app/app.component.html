@@ -1,3 +1,44 @@
-<h1>
-  {{title}}
-</h1>
+<header id="mainHeader">
+    <div class="container">
+        <div class="row logo-menu" [ngClass]="{'bottom-margin': _router.isActive('home')}">
+            <div id="mainLogo">
+                <h2 routerLink="home"><i class="fa fa-pie-chart" aria-hidden="true"></i> CrazyPoll</h2>
+            </div>
+            <nav id="topNavigation">
+                <ul>
+                    <li id="menuCloseButton"><a>X</a></li>
+                    <li *ngIf="!_authService.isLoggedIn"><a routerLink="signup">Sign Up</a></li>
+                    <li *ngIf="!_authService.isLoggedIn"><a routerLink="login">Login</a></li>
+                    <!--<li *ngIf="_authService.isLoggedIn"><a routerLink="dashboard">Dashboard</a></li>-->
+                    <li *ngIf="_authService.isLoggedIn"><a routerLink="dashboard/polls/new">New Poll</a></li>
+                    <li *ngIf="_authService.isLoggedIn"><a routerLink="dashboard/polls/all">All Polls</a></li>
+                    <li *ngIf="_authService.isLoggedIn"><a routerLink="dashboard/profile">Profile</a></li>
+                    <li *ngIf="_authService.isLoggedIn"><a (click)="logout()">Logout</a></li>
+                </ul>
+            </nav>
+            <div id="hamburgerBtn">
+                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div *ngIf="_router.isActive('home')" class="row">
+            <div id="headerInfoContent">
+                <div id="headerInfoLogo" class="text-center">
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                </div>
+                <div id="headerInfoHeading" class="text-center">
+                    <h1>CrazyPoll - free, responsive, single-page voting application.</h1>
+                    <p>CrazyPoll is free, responsive and single-page voting application made completely with JavaScript. It's lightspeed fast with graphical representation of polls.</p>
+                    <a routerLink="public/all" id="headerInfoLink">See polls</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</main>
+<footer id="mainFooter">
+    <app-footer></app-footer>
+</footer>

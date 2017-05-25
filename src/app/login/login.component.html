@@ -1,0 +1,45 @@
+<h2 class="text-center">CrazyPoll Login</h2>
+<form *ngIf="!message" [formGroup]="loginForm" novalidate (ngSubmit)="login()" id="loginForm">
+    <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" formControlName="email">
+        <div *ngIf="loginForm.controls['email'].hasError('required') && !loginForm.controls['email'].pristine" class="alert alert-danger">
+            This field is required.
+        </div>
+        <div *ngIf="loginForm.controls['email'].hasError('pattern') && !loginForm.controls['email'].pristine" class="alert alert-danger">
+            Email must follow standard email pattern.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" formControlName="password">
+        <div 
+        *ngIf="
+                (loginForm.controls['password'].hasError('required') && !loginForm.controls['password'].pristine) ||
+                (loginForm.controls['password'].hasError('minlength') && !loginForm.controls['password'].pristine) ||
+                (loginForm.controls['password'].hasError('pattern') && !loginForm.controls['password'].pristine)
+              "
+        class="alert alert-danger">
+            <ul>
+                <li *ngIf="loginForm.controls['password'].hasError('required') && !loginForm.controls['password'].pristine">
+                    Password is required.
+                </li>
+                <li *ngIf="loginForm.controls['password'].hasError('minlength') && !loginForm.controls['password'].pristine">
+                    Password must be minimum 4 characters long.
+                </li>
+                <li *ngIf="loginForm.controls['password'].hasError('maxlength') && !loginForm.controls['password'].pristine">
+                    Password must be maximum 20 characters long.
+                </li>
+                <li *ngIf="loginForm.controls['password'].hasError('pattern') && !loginForm.controls['password'].pristine">
+                    Password must contain at least 1 number.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
+    <p *ngIf="statusMessage" class="text-center alert alert-danger">{{ statusMessage }}</p>
+</form>
+<p class="text-center login-message" *ngIf="message">
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+</p>

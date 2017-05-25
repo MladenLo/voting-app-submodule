@@ -1,0 +1,11 @@
+.chart {
+    display: block;
+    margin-bottom: 20px;
+}
+#pollLoader {
+    margin: 50px 0px;
+    color: #FF9933;
+}
+#voteButtonsContainer button {
+    margin: 5px;
+}

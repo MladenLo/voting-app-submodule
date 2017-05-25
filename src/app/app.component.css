@@ -1,0 +1,154 @@
+#mainHeader {
+    background-color: #14a8d0;
+    padding:20px;
+}
+#mainLogo {
+    color: #FFF;
+    font-weight:bold;
+}
+#mainLogo i {
+    color: #FF9933;
+}
+#mainLogo h2 {
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+    cursor: pointer;
+}
+#topNavigation ul {
+    list-style-type: none;
+    margin: 0px;
+    padding-top: 8px;
+    text-align:right;
+}
+#topNavigation li {
+    display: inline-block;
+}
+#topNavigation a {
+    color: #FFF;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+}
+#topNavigation a:hover, #topNavigation a:active {
+    background-color: #0a6f9b;
+    cursor: pointer;
+    box-shadow: 0px 5px 20px 1px #065476;
+}
+#hamburgerBtn {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #fff;
+}
+.bottom-margin {
+    margin-bottom: 150px;
+}
+#mainLogo, #topNavigation {
+    display: inline-block;
+    width: 50%;
+}
+#topNavigation {
+    width: 49%;
+}
+#topNavigation #menuCloseButton {
+    display: none;
+}
+/* Header content info styles */
+#headerInfoContent {
+    color: #fff;
+}
+#headerInfoHeading {
+    margin-bottom: 50px;
+}
+#headerInfoHeading h1 {
+    font-size: 50px;
+    font-weight:bold;
+}
+#headerInfoHeading p {
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+#headerInfoLogo i {
+    font-size: 5em;
+    color: #FF9933;
+}
+#headerInfoLink {
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #0a6f9b;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0px 0px 20px 1px #065476;
+    font-weight:bold;
+}
+/*Main footer*/
+#mainFooter::before {
+    content: '';
+    display:block;
+    height:1px;
+    background-color: black;
+    width:50%;
+    background-color: #0a6f9b;
+    margin: 0 auto;
+}
+
+/* Header media queries */
+@media screen and (max-width: 768px) {
+    #mainLogo {
+        display:inline-block;
+        width: 85%;
+    }
+    #topNavigation {
+        background-color: #0a6f9b;
+        display:block;
+        position:absolute;
+        z-index: 1;
+        width: 100%;
+        top: -300px;
+        right:0px;
+    }
+    #topNavigation ul {
+        margin: 0px;
+        padding:0px;
+    }
+    #topNavigation li {
+        display:block;
+        text-align: center;
+        border-bottom: 1px solid #14a8d0;
+    }
+    #topNavigation li:last-child {
+        border-bottom: none;
+    }
+    #topNavigation a {
+        display:block;
+        border-radius: 0px;
+    }
+    #topNavigation a:hover {
+        box-shadow: none;
+    }
+    #headerInfoHeading h1 {
+        font-size: 28px;
+    }
+    #headerInfoHeading p {
+        font-size: 15px;
+    }
+    .logo-menu {
+        margin-bottom: 45px;
+    }
+    #headerInfoLogo i {
+        font-size: 3em;
+    }
+    #topNavigation #menuCloseButton {
+        display: block;
+    }
+    #hamburgerBtn {
+        display: inline-block;
+    }
+}

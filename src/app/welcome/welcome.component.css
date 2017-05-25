@@ -1,0 +1,23 @@
+.features-section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.feature-icon {
+    margin-bottom: 20px;
+}
+.feature-share i {
+    color: #3B5998;
+}
+.feature-chart i {
+    color: #FF9933;
+}
+.feature-mobile i {
+    color: #99FF33;
+}
+.feature-icon i {
+    font-size: 9em;
+}
+.features-section p {
+    font-size: 19px;
+    color: #333;
+}

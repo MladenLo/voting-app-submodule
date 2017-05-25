@@ -1,0 +1,35 @@
+<div class="col-xs-12">
+      <h2>Edit this poll</h2>
+      <form *ngIf="!message" [formGroup]="editPollForm" novalidate (ngSubmit)="sendForEdit()" id="editPollForm">
+    
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="title" [value]="poll ? poll.title : null" formControlName="title">
+                <div *ngIf="editPollForm.controls['title'].hasError('required') && !editPollForm.controls['title'].pristine" class="alert alert-danger">
+                    This field is required.
+                </div>
+                <div *ngIf="editPollForm.controls['title'].hasError('minlength') && !editPollForm.controls['title'].pristine" class="alert alert-danger">
+                    Username must have minimum 2 characters.
+                </div>
+                <div *ngIf="editPollForm.controls['title'].hasError('maxlength') && !editPollForm.controls['title'].pristine" class="alert alert-danger">
+                    Username must have maximum 255 characters.
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="options">Options</label>
+                <input type="text" class="form-control" id="options" name="options" placeholder="options" [value]="optionsForEdit ? optionsForEdit : null" formControlName="options">
+                <div *ngIf="editPollForm.controls['options'].hasError('required') && !editPollForm.controls['options'].pristine" class="alert alert-danger">
+                    This field is required.
+                </div>
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Edit Poll</button>
+            <p *ngIf="statusMessage && statusMessage.successfulRequest" class="text-center alert alert-success">{{ statusMessage.message }}</p>
+            <p *ngIf="statusMessage && !statusMessage.successfulRequest" class="text-center alert alert-danger">{{ statusMessage.message }}</p>
+        </form>
+    <p class="text-center signup-message" *ngIf="message">
+        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+    </p>
+</div>

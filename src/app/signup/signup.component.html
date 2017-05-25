@@ -1,0 +1,71 @@
+<h2 class="text-center">CrazyPoll Signup</h2>
+<form *ngIf="!message" [formGroup]="signupForm" novalidate (ngSubmit)="signup()" id="signupForm">
+    
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="username" formControlName="username">
+        <div *ngIf="signupForm.controls['username'].hasError('required') && !signupForm.controls['username'].pristine" class="alert alert-danger">
+            This field is required.
+        </div>
+        <div *ngIf="signupForm.controls['username'].hasError('minlength') && !signupForm.controls['username'].pristine" class="alert alert-danger">
+            Username must have minimum 4 characters.
+        </div>
+        <div *ngIf="signupForm.controls['username'].hasError('maxlength') && !signupForm.controls['username'].pristine" class="alert alert-danger">
+            Username must have maximum 20 characters.
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" formControlName="email">
+        <div *ngIf="signupForm.controls['email'].hasError('required') && !signupForm.controls['email'].pristine" class="alert alert-danger">
+            This field is required.
+        </div>
+        <div *ngIf="signupForm.controls['email'].hasError('pattern') && !signupForm.controls['email'].pristine" class="alert alert-danger">
+            Email must follow standard email pattern.
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" formControlName="password">
+        <div 
+        *ngIf="
+                (signupForm.controls['password'].hasError('required') && !signupForm.controls['password'].pristine) ||
+                (signupForm.controls['password'].hasError('minlength') && !signupForm.controls['password'].pristine) ||
+                (signupForm.controls['password'].hasError('pattern') && !signupForm.controls['password'].pristine)
+              "
+        class="alert alert-danger">
+            <ul>
+                <li *ngIf="signupForm.controls['password'].hasError('required') && !signupForm.controls['password'].pristine">
+                    Password is required.
+                </li>
+                <li *ngIf="signupForm.controls['password'].hasError('minlength') && !signupForm.controls['password'].pristine">
+                    Password must be minimum 4 characters long.
+                </li>
+                <li *ngIf="signupForm.controls['password'].hasError('maxlength') && !signupForm.controls['password'].pristine">
+                    Password must be maximum 20 characters long.
+                </li>
+                <li *ngIf="signupForm.controls['password'].hasError('pattern') && !signupForm.controls['password'].pristine">
+                    Password must contain at least 1 number.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputConfirmPassword">Repeat password</label>
+        <input type="password" class="form-control" id="inputConfirmPassword" name="confirmPassword" placeholder="Password" formControlName="confirmPassword">
+        <div *ngIf="(signupForm.controls['confirmPassword'].value != signupForm.controls['password'].value) &&!signupForm.controls['confirmPassword'].pristine" class="alert alert-danger">
+            Repeated password must match password.
+        </div>
+    </div>
+    
+    <button type="submit" [disabled]="!signupForm.valid || (signupForm.controls['confirmPassword'].value != signupForm.controls['password'].value)" class="btn btn-primary">Sign Up</button>
+    <p *ngIf="statusMessage && statusMessage.userSignup" class="text-center alert alert-success">{{ statusMessage.message }}</p>
+    <p *ngIf="statusMessage && !statusMessage.userSignup" class="text-center alert alert-danger">{{ statusMessage.message }}</p>
+</form>
+<p class="text-center signup-message" *ngIf="message">
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+</p>
+
